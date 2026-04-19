@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## HARD CODE AI
+AI for programming firmware and hardware like drones and ESP32. Alternative of cursor for hardware.
 
 ## Getting Started
 
@@ -12,6 +13,28 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
+Create env.local and add these :
+
+```bash
+# Google Gemini
+GOOGLE_GENERATIVE_AI_API_KEY=
+
+# Database
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+# Redis
+REDIS_URL=redis://localhost:6379
+
+# Storage (Local)
+LOCAL_FIRMWARE_STORAGE_PATH=./storage/firmware
+
+# App
+NEXT_PUBLIC_WS_URL=ws://localhost:3001
+DEVICE_BRIDGE_PORT=3001
+NODE_ENV=development
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

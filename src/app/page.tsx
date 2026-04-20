@@ -2,185 +2,305 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Cpu, Sparkles, Terminal, Shield, Zap, Globe, Code, ChevronRight, BookOpen } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Cpu, Sparkles, Terminal, Shield, Zap, Globe, Code, ChevronRight, BookOpen, Activity, Layers, PenTool } from 'lucide-react';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-white/10 selection:text-white overflow-x-hidden">
-      {/* Structural Grid */}
-      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none app-grid"></div>
+    <div className="min-h-screen bg-[#080808] text-white font-sans selection:bg-[#CCFF00] selection:text-black overflow-x-hidden relative">
+      {/* Technical Overlays */}
+      <div className="fixed inset-0 z-0 opacity-[0.05] pointer-events-none blueprint-grid"></div>
+      <div className="fixed inset-0 z-10 noise-overlay pointer-events-none"></div>
+      <div className="scanline"></div>
       
       {/* TOP NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] h-14 border-b border-white/5 bg-black/90 backdrop-blur-xl flex items-center justify-between px-8">
-        <div className="flex items-center gap-10">
-          <div className="flex items-center gap-2 text-[13px] font-bold tracking-widest text-white">
-            <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white]" />
-            HARDCODE_AI
+      <nav className="fixed top-0 left-0 right-0 z-[100] h-16 border-b border-white/5 bg-[#080808]/80 backdrop-blur-xl flex items-center justify-between px-8">
+        <div className="flex items-center gap-12">
+          <div className="flex items-center gap-3">
+             <div className="w-5 h-5 border border-[#CCFF00] flex items-center justify-center p-0.5">
+                <div className="w-full h-full bg-[#CCFF00]" />
+             </div>
+             <span className="text-[14px] font-bold tracking-[0.2em] text-white">HARDCODE_AI</span>
           </div>
-          <div className="hidden lg:flex items-center gap-1 text-white/40">
-            {['Inference Engine', 'Hardware Labs', 'Registry', 'Docs'].map(item => (
-              <span key={item} className="text-[13px] px-3 py-1.5 hover:text-white hover:bg-white/5 rounded-md cursor-pointer transition-all">{item}</span>
+          <div className="hidden lg:flex items-center gap-2">
+            {['Engine', 'Labs', 'Registry', 'Specs'].map(item => (
+              <span key={item} className="text-[11px] font-mono tracking-widest px-4 py-1.5 text-white/40 hover:text-[#CCFF00] hover:bg-[#CCFF00]/5 cursor-pointer transition-all uppercase">{item}</span>
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Link href="/login" className="text-[13px] text-white/40 hover:text-white px-3 transition-colors">Sign in</Link>
-          <button className="bg-white text-black text-[13px] font-medium px-4 py-1.5 rounded-md hover:opacity-90 transition-opacity">
-            Initialize Terminal
+        <div className="flex items-center gap-6">
+          <Link href="/login" className="text-[11px] font-mono tracking-widest text-white/40 hover:text-white uppercase transition-colors">Auth_init</Link>
+          <button className="hc-button flex items-center gap-2">
+            <Terminal className="w-4 h-4" />
+            <span>Connect_Node</span>
           </button>
         </div>
       </nav>
 
-      <main className="relative z-10 pt-24">
+      <main className="relative z-20 pt-32 pb-40">
         {/* HERO */}
-        <section className="text-center py-20 border-b border-white/5 mx-auto max-w-7xl">
-          <div className="text-[11px] font-mono text-white/30 tracking-[.12em] uppercase mb-5">HardCode AI // v24.13.0</div>
-          <h1 className="text-5xl md:text-[64px] font-medium leading-[1.1] tracking-[-.03em] max-w-[800px] mx-auto mb-6">
-            Turn silicon ideas <br/> into <em className="text-white non-italic font-bold underline decoration-white/20 underline-offset-8">firmware</em>
-          </h1>
-          <p className="text-lg text-white/40 font-light max-w-[500px] mx-auto mb-10 leading-relaxed tracking-tight">
-            Delegate implementation to focus on higher-level direction.
-          </p>
-          <Link href="/login" className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-lg text-[14px] font-bold hover:opacity-90 transition-opacity">
-            Start Synthesis <ArrowRight className="w-4 h-4 ml-1" />
-          </Link>
+        <section className="container mx-auto px-6 text-center max-w-5xl relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-3 py-1 border border-[#CCFF00]/20 bg-[#CCFF00]/5 text-[#CCFF00] text-[10px] font-mono tracking-[0.2em] uppercase mb-8"
+          >
+            <Activity className="w-3 h-3" />
+            System Status: Nominal // Neural Bridge v24.13.0
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-6xl md:text-[90px] font-bold leading-[0.95] tracking-[-0.04em] mb-8"
+          >
+            Shed the <br/> 
+            <span className="text-[#CCFF00]">Abstract.</span> <br/>
+            Write the <span className="relative">
+              Silicon.
+              <svg className="absolute -bottom-2 left-0 w-full h-2 text-[#CCFF00]/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 0 L100 0 L90 10 L10 10 Z" fill="currentColor" />
+              </svg>
+            </span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-lg md:text-xl text-white/50 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
+          >
+            The worlds first high-fidelity AI IDE built specifically for hardware engineers. 
+            From RTL to firmware, bridge the gap with neural synthesis.
+          </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            <button className="hc-button text-sm px-10 py-4">
+              Initialize Synthesis <ArrowRight className="w-4 h-4 ml-1" />
+            </button>
+            <button className="hc-button-ghost text-sm px-10 py-4">
+              View Labs
+            </button>
+          </motion.div>
         </section>
 
         {/* IDE PREVIEW */}
-        <div className="max-w-[1100px] mx-auto px-6 py-14 border-b border-white/5">
-          <div className="bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden noir-shadow noir-glow">
-            <div className="h-9 bg-[#111] border-b border-white/5 flex items-center px-4 gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              <span className="ml-4 font-mono text-[11px] text-white/20">HardCode AI — hardware_bridge.cc</span>
-            </div>
-            <div className="grid grid-cols-[200px_1fr_280px] min-h-[420px]">
-              {/* Sidebar */}
-              <div className="border-r border-white/5 py-4 bg-[#0a0a0a]">
-                <div className="px-4 py-2 text-[10px] text-white/20 font-mono tracking-widest mb-2">EXPLORER</div>
-                {['hardware_bridge.cc', 'register_map.h', 'hil_bridge.h', 'silicon.h'].map((f, i) => (
-                  <div key={f} className={`px-4 py-1.5 font-mono text-[11px] flex items-center gap-2 transition-colors cursor-pointer ${i === 0 ? 'bg-white/5 text-white' : 'text-white/30 hover:text-white/60'}`}>
-                    <Code className="w-3.5 h-3.5 opacity-50" />
-                    {f}
-                  </div>
-                ))}
-              </div>
-              {/* Editor */}
-              <div className="bg-black p-6 font-mono text-[12px] leading-relaxed text-white/80 overflow-hidden">
-                <div className="flex gap-4">
-                  <span className="text-white/20 select-none w-4 text-right">1</span>
-                  <span><span className="text-white/40 italic">// HardCode AI — hardware_bridge.cc</span></span>
+        <section className="mt-32 max-w-[1200px] mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="bg-[#0C0C0C] border border-white/10 relative shadow-2xl"
+          >
+            {/* Window Decor */}
+            <div className="absolute -top-px -left-px w-2 h-2 bg-[#CCFF00]" />
+            <div className="absolute -top-px -right-px w-2 h-2 bg-[#CCFF00]" />
+            <div className="absolute -bottom-px -left-px w-2 h-2 bg-[#CCFF00]" />
+            <div className="absolute -bottom-px -right-px w-2 h-2 bg-[#CCFF00]" />
+            
+            <div className="h-10 bg-[#121212] border-b border-white/10 flex items-center justify-between px-4">
+              <div className="flex items-center gap-6">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 bg-white/10" />
+                  <div className="w-2.5 h-2.5 bg-white/10" />
+                  <div className="w-2.5 h-2.5 bg-white/10" />
                 </div>
-                <div className="flex gap-4">
-                  <span className="text-white/20 select-none w-4 text-right">2</span>
-                  <span><span className="text-white/40 italic">// Neural synthesis layer v24.13.0</span></span>
-                </div>
-                <div className="flex gap-4">
-                  <span className="text-white/20 select-none w-4 text-right">3</span>
-                  <span />
-                </div>
-                <div className="flex gap-4">
-                  <span className="text-white/20 select-none w-4 text-right">4</span>
-                  <span><span className="text-purple-400">#include</span> <span className="text-white">&lt;hardcode/silicon.h&gt;</span></span>
-                </div>
-                <div className="flex gap-4">
-                  <span className="text-white/20 select-none w-4 text-right">5</span>
-                  <span><span className="text-purple-400">#include</span> <span className="text-white">&lt;hardcode/hil_bridge.h&gt;</span></span>
-                </div>
-                <div className="flex gap-4 hover:bg-white/5 rounded-sm transition-colors">
-                  <span className="text-white/20 select-none w-4 text-right">6</span>
-                  <span><span className="text-blue-400 italic">SiliconBridge::init</span>() &#123; <span className="w-2 h-4 bg-white inline-block align-middle animate-blink" /> &#125;</span>
+                <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest flex items-center gap-2">
+                   <PenTool className="w-3 h-3" />
+                   HardCode_UI // hardware_bridge.cc
                 </div>
               </div>
-              {/* AI Panel */}
-              <div className="border-l border-white/5 p-4 space-y-4 bg-black/40">
-                <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-4">Inference Layer</div>
-                <div className="p-3 bg-white/5 border border-white/10 rounded-md space-y-2">
-                   <div className="text-[9px] font-mono text-white tracking-widest uppercase">HARDCODE AI</div>
-                   <p className="text-[11px] text-white/60 leading-relaxed font-sans">
-                     I've analyzed your MCU target's register map. Buffer bounds validated for <code className="text-white">write_flash()</code>.
-                   </p>
-                </div>
-                <div className="p-3 bg-blue-500/5 border border-blue-500/10 rounded-md space-y-2">
-                   <div className="text-[9px] font-mono text-blue-400 tracking-widest uppercase">SYDNEY_CORE</div>
-                   <p className="text-[11px] text-white/60 leading-relaxed">
-                     Hardware JTAG port detected. Syncing HIL bridge...
-                   </p>
-                </div>
-              </div>
+              <div className="text-[9px] font-mono text-[#CCFF00] animate-pulse">● LIVE_BRIDGE_ENABLED</div>
             </div>
-            <div className="h-7 bg-[#111] border-t border-white/5 flex items-center px-4 gap-6">
-               <div className="flex items-center gap-2 text-[10px] font-mono text-white/40">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  Neural Layer Synched
-               </div>
-               <div className="text-[10px] font-mono text-white/20">Gemini_1.5_Pro</div>
-            </div>
-          </div>
-        </div>
 
-        {/* EVERYWHERE SECTION */}
-        <section className="max-w-[1100px] mx-auto py-24 px-6 grid grid-cols-1 md:grid-cols-4 gap-px bg-white/5 border border-white/5 mb-32">
-          {[
-            { title: "Desktop", desc: "Advanced silicon coding in your dev environment.", code: "$ hardcode flash --stm32" },
-            { title: "CLI", desc: "Synthesis in any terminal, anywhere.", code: "hc synth --mcu h743" },
-            { title: "Editors", desc: "Extensions for VSCode, CLion, and Neovim.", code: "● VS Code Extension" },
-            { title: "Silicon+", desc: "Unlimited synthesis calls for scale.", code: "Synthesis: Unlimited" }
-          ].map((card, i) => (
-            <div key={i} className="bg-black p-8 space-y-6 hover:bg-white/[0.02] transition-colors group">
-              <h3 className="text-sm font-bold tracking-tight text-white/90 group-hover:text-white">{card.title}</h3>
-              <p className="text-[12px] text-white/30 font-light leading-relaxed">{card.desc}</p>
-              <div className="bg-[#0a0a0a] border border-white/5 p-4 rounded-md font-mono text-[10px] text-white/60">
-                 {card.code}
+            <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_300px] min-h-[500px]">
+              {/* Explorer */}
+              <div className="border-r border-white/5 p-6 bg-[#080808]/50 overflow-hidden hidden md:block">
+                <div className="technical-label mb-6">File_System</div>
+                <div className="space-y-3">
+                  {['bridge.cc', 'io_map.h', 'silicon_v4.ld', 'thermal.spec'].map((f, i) => (
+                    <div key={f} className={`flex items-center gap-3 text-[11px] font-mono ${i === 0 ? 'text-[#CCFF00]' : 'text-white/30'}`}>
+                      <div className={`w-1 h-3 ${i === 0 ? 'bg-[#CCFF00]' : 'bg-white/5'}`} />
+                      {f}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-20">
+                   <div className="technical-label mb-4">Device_Stats</div>
+                   <div className="h-20 border border-white/5 bg-black p-2 flex items-end gap-1">
+                      {[40, 70, 45, 90, 65, 80, 50, 95].map((h, i) => (
+                        <div key={i} className="flex-1 bg-[#CCFF00]/20" style={{ height: `${h}%` }} />
+                      ))}
+                   </div>
+                </div>
+              </div>
+
+              {/* Editor */}
+              <div className="p-8 font-mono text-[13px] leading-relaxed relative overflow-hidden">
+                <div className="absolute top-4 right-4 text-[40px] font-bold text-white/[0.02] pointer-events-none">CODE_GATE</div>
+                <div className="space-y-1">
+                  <div className="flex gap-6"><span className="text-white/10 w-4 text-right">01</span><span className="text-white/40 italic">// Hardware Bridge Implementation</span></div>
+                  <div className="flex gap-6"><span className="text-white/10 w-4 text-right">02</span><span className="text-[#F63509]">#include</span> <span className="text-[#00E0FF]">&lt;hc/silicon.h&gt;</span></div>
+                  <div className="flex gap-6"><span className="text-white/10 w-4 text-right">03</span><span>&nbsp;</span></div>
+                  <div className="flex gap-6"><span className="text-white/10 w-4 text-right">04</span><span><span className="text-[#CCFF00]">void</span> <span className="text-white font-bold">Bridge::Initialize</span>() &#123;</span></div>
+                  <div className="flex gap-6"><span className="text-white/10 w-4 text-right">05</span><span className="pl-4 text-white/70">Silicon::Lock(BRIDGE_PIN_MASK);</span></div>
+                  <div className="flex gap-6 bg-[#CCFF00]/5 border-y border-[#CCFF00]/10 py-1">
+                    <span className="text-[#CCFF00] w-4 text-right">06</span>
+                    <span className="pl-4">UART::Write(<span className="text-[#00E0FF]">"SYSTEM_BOOT_INIT"</span>); <span className="w-1.5 h-4 bg-[#CCFF00] inline-block align-middle ml-1" /></span>
+                  </div>
+                  <div className="flex gap-6"><span className="text-white/10 w-4 text-right">07</span><span>&#125;</span></div>
+                </div>
+              </div>
+
+              {/* AI Layer */}
+              <div className="border-l border-white/5 bg-[#0C0C0C] p-6 space-y-6">
+                <div className="technical-label">Neural_Inference</div>
+                <div className="p-4 border border-[#CCFF00]/20 bg-[#CCFF00]/5 space-y-3 relative group overflow-hidden">
+                   <div className="absolute -right-4 -top-4 opacity-5 group-hover:rotate-12 transition-transform">
+                      <Zap className="w-20 h-20 text-[#CCFF00]" />
+                   </div>
+                   <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-[#CCFF00]" />
+                      <span className="text-[10px] font-mono font-bold text-[#CCFF00] tracking-widest uppercase">Analysis_Found</span>
+                   </div>
+                   <p className="text-[12px] text-white/70 leading-relaxed font-sans">
+                     I've detected a timing race condition in <code className="text-white">Bridge::Initialize</code>. 
+                     Recommend adding a 10ms wait-state for stable PLL lock.
+                   </p>
+                   <button className="text-[10px] font-mono text-[#CCFF00] underline mt-2 hover:text-white transition-colors uppercase tracking-widest">
+                      Apply_Patch [10ms]
+                   </button>
+                </div>
+                
+                <div className="space-y-4 pt-10">
+                   <div className="technical-label">Memory_Footprint</div>
+                   <div className="space-y-2">
+                      <div className="flex justify-between text-[10px] font-mono">
+                         <span className="text-white/40">SRAM_1</span>
+                         <span className="text-white">82%</span>
+                      </div>
+                      <div className="h-1 bg-white/5">
+                         <div className="h-full bg-[#CCFF00] w-[82%]" />
+                      </div>
+                   </div>
+                </div>
               </div>
             </div>
-          ))}
+
+            <div className="h-8 bg-[#121212] border-t border-white/10 flex items-center justify-between px-6">
+               <div className="flex items-center gap-6">
+                  <div className="text-[9px] font-mono text-white/30 tracking-widest uppercase">Line 06, Col 42</div>
+                  <div className="text-[9px] font-mono text-white/30 tracking-widest uppercase italic">Target: STM32H743XI</div>
+               </div>
+               <div className="flex items-center gap-4 text-[9px] font-mono text-white/30">
+                  <span className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" /> SYNC://OK</span>
+                  <span>v24.13.0-STABLE</span>
+               </div>
+            </div>
+          </motion.div>
         </section>
 
-        {/* FINAL CTA */}
-        <section className="py-40 text-center space-y-12">
-           <h2 className="text-6xl md:text-[80px] font-medium tracking-[-.04em] leading-tight">
-             Try <em className="text-white non-italic font-bold underline decoration-white/20 underline-offset-[12px]">HardCode AI</em> now.
-           </h2>
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <button className="bg-white text-black px-12 py-4 rounded-lg text-sm font-bold shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                Start Synthesis — Free
-              </button>
-              <button className="border border-white/10 text-white/40 px-10 py-4 rounded-lg text-sm font-bold hover:text-white hover:bg-white/5 transition-all">
-                Registry Docs
-              </button>
+        {/* FEATURES GRID */}
+        <section className="mt-40 container mx-auto px-6">
+           <div className="grid grid-cols-1 md:grid-cols-4 border border-white/5 bg-white/[0.02]">
+              {[
+                { title: 'RTL_SYNTH', desc: 'Convert natural language specs into production-grade Verilog and VHDL.', icon: Layers },
+                { title: 'FIRMWARE_GEN', desc: 'Neural synthesis of low-level C/C++ driver code with safety validation.', icon: Cpu },
+                { title: 'HIL_BRIDGE', desc: 'Live interaction with connected hardware via serial and JTAG.', icon: Zap },
+                { title: 'SECURE_LABS', desc: 'End-to-end encrypted development environment with global registry.', icon: Shield },
+              ].map((f, i) => (
+                <div key={i} className="p-10 border-r border-white/5 last:border-0 hover:bg-[#CCFF00]/5 transition-all group relative">
+                   <div className="absolute top-4 right-4 text-[10px] font-mono text-white/10 tracking-widest uppercase">MOD_0{i+1}</div>
+                   <f.icon className="w-8 h-8 text-[#CCFF00] mb-8 group-hover:scale-110 transition-transform" />
+                   <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/90">{f.title}</h3>
+                   <p className="text-[13px] text-white/40 leading-relaxed font-light">{f.desc}</p>
+                </div>
+              ))}
            </div>
         </section>
 
-        {/* FOOTER */}
-        <footer className="max-w-[1100px] mx-auto py-20 px-6 border-t border-white/5 text-white/20">
-          <div className="flex flex-col md:flex-row justify-between mb-16 gap-12">
-            <div className="space-y-2">
-              <div className="text-sm font-bold text-white tracking-widest uppercase">HARDCODE_AI</div>
-              <div className="text-[11px] tracking-tight uppercase">Hardware Intelligence Layer © 2026</div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-[11px] font-bold uppercase tracking-widest">
-               {['Product', 'Labs', 'Docs', 'Company'].map(col => (
-                 <div key={col} className="space-y-4">
-                    <div className="text-white/60 mb-6">{col}</div>
-                    <div className="flex flex-col gap-3">
-                       <span className="hover:text-white cursor-pointer transition-colors">Link</span>
-                       <span className="hover:text-white cursor-pointer transition-colors">Link</span>
+        {/* FINAL CTA */}
+        <section className="mt-60 text-center relative overflow-hidden py-40">
+           <div className="absolute inset-0 z-0 bg-[#CCFF00]/5 flex items-center justify-center opacity-20">
+              <div className="w-[800px] h-[800px] border border-[#CCFF00]/10 rounded-full animate-pulse" />
+              <div className="absolute w-[600px] h-[600px] border border-[#CCFF00]/10 rounded-full" />
+           </div>
+           
+           <div className="relative z-10 space-y-12 max-w-4xl mx-auto px-6">
+             <h2 className="text-5xl md:text-[80px] font-bold leading-tight tracking-tight">
+               Are you ready to build <br/> the <span className="text-[#CCFF00]">Concrete?</span>
+             </h2>
+             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
+                <button className="hc-button text-sm px-16 py-5">
+                   Request Early Access // HC_INIT
+                </button>
+                <button className="hc-button-ghost text-sm px-12 py-5">
+                   Technical Documentation
+                </button>
+             </div>
+             <p className="text-[11px] font-mono text-white/30 tracking-[0.3em] uppercase">
+                Limited Nodes Available // Registry Open for Tier-1 Engineers
+             </p>
+           </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/10 pt-24 pb-12 bg-black relative z-20">
+         <div className="container mx-auto px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
+               <div className="lg:col-span-2 space-y-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-6 border-2 border-[#CCFF00] flex items-center justify-center p-0.5">
+                        <div className="w-full h-full bg-[#CCFF00]" />
                     </div>
+                    <span className="text-[16px] font-bold tracking-[0.3em] text-white">HARDCODE_AI</span>
+                  </div>
+                  <p className="text-white/40 text-[14px] leading-relaxed max-w-md">
+                     The neural intelligence layer for 21st century hardware engineering.
+                     Production-grade, low-level, and brutally fast.
+                  </p>
+                  <div className="flex gap-4">
+                     {/* Social placeholders */}
+                     {[1, 2, 3].map(i => (
+                       <div key={i} className="w-8 h-8 border border-white/10 flex items-center justify-center hover:border-[#CCFF00] transition-colors cursor-pointer">
+                          <div className="w-1.5 h-1.5 bg-white/40 group-hover:bg-[#CCFF00]" />
+                       </div>
+                     ))}
+                  </div>
+               </div>
+               
+               {['ENGINE', 'HARDWARE', 'RESOURCES'].map((cat, i) => (
+                 <div key={i} className="space-y-6">
+                    <div className="technical-label text-[#CCFF00]">{cat}</div>
+                    <ul className="space-y-4">
+                       {['Link_01', 'Link_02', 'Link_03', 'Link_04'].map(l => (
+                         <li key={l} className="text-[12px] text-white/30 hover:text-white cursor-pointer hover:translate-x-1 transition-all">{l}</li>
+                       ))}
+                    </ul>
                  </div>
                ))}
             </div>
-          </div>
-          <div className="pt-8 border-t border-white/5 flex justify-between items-center text-[10px] font-mono tracking-widest text-white/10">
-              <span>System Integrity Verified // All Nodes Nominal</span>
-              <div className="flex gap-8">
-                 <span className="hover:text-white/40 cursor-pointer">Privacy</span>
-                 <span className="hover:text-white/40 cursor-pointer">Terms</span>
-              </div>
-          </div>
-        </footer>
-      </main>
+            
+            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+               <div className="text-[10px] font-mono text-white/10 tracking-[0.2em] uppercase">
+                  © 2026 HARDCODE INTELLIGENCE SYSTEMS // ALL RIGHTS RESERVED
+               </div>
+               <div className="flex gap-10 text-[10px] font-mono text-white/20 tracking-widest">
+                  <span className="hover:text-[#CCFF00] cursor-pointer">PRIVACY_PROTOCOL</span>
+                  <span className="hover:text-[#CCFF00] cursor-pointer">TERMS_OF_ENGAGEMENT</span>
+               </div>
+            </div>
+         </div>
+      </footer>
     </div>
   );
 }
